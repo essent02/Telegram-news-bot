@@ -38,6 +38,7 @@ Inside the .env file, add the following line:
 API_TOKEN="your_telegram_bot_api_token"
 ```
 Replace your_telegram_bot_api_token with the actual API token you received from BotFather on Telegram.
+
 3. *Configuration*
 - Navigate to the src folder.
 - Open or create a file named config.py.
