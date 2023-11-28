@@ -39,7 +39,7 @@ API_TOKEN="your_telegram_bot_api_token"
 ```
 Replace your_telegram_bot_api_token with the actual API token you received from BotFather on Telegram.
 
-3. *Configuration*
+4. *Configuration*
 - Navigate to the src folder.
 - Open or create a file named config.py.
 - Inside config.py, set your Telegram chat ID as CHAT_ID. This is where the bot will send news updates. Example:
