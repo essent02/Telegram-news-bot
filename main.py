@@ -1,21 +1,20 @@
 from aiogram import executor
 import asyncio
+import logging
 
 from src.config import bot, dp, CHAT_ID, TOPIC_ID
 from src.classes import NEWS
 from src.db import DATABASE
 
-# Define an asynchronous function named 'start', which takes 'message' as an argument.
-async def start(message):
-    # Send a reply to the received message asynchronously.
-    await message.answer(
-        "Welcome! 👋 I'm Telegram News Bot. Stay updated with the latest news about Telegram right here. "
-        "If you have any questions or need help, feel free to reach out to me at @essent_02!"
-    )
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
+async def start_command(message):
+    # Send a reply to the received message asynchronously.
+    await message.answer("Welcome! 👋 I'm Telegram News Bot. Stay updated with the latest news about Telegram right here.\nIf you have any questions or need help, feel free to reach out to me at @essent_02!")
 
 # Define an asynchronous function named 'startup', which takes 'dp' as an argument.
-async def startup(dp):
+async def fetch_and_post_news():
     # Start an infinite loop.
     while True:
         # Create an instance of NEWS class.
@@ -49,6 +48,12 @@ async def startup(dp):
 
         # Wait for an hour before repeating the loop.
         await asyncio.sleep(60 * 60)
+
+dp.register_message_handler(start_command, commands=['start', 'st'])
+
+async def startup(dp):
+    # Schedule the fetch_and_post_news task to run in the background
+    asyncio.create_task(fetch_and_post_news())
 
 # This if statement checks if this script is the main program and is not being imported as a module in another script.
 if __name__ == "__main__":
